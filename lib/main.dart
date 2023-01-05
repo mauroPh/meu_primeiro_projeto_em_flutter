@@ -37,13 +37,20 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class Task extends StatelessWidget {
+class Task extends StatefulWidget {
   final String nome;
+
   const Task(this.nome, {Key? key}) : super(key: key);
 
   @override
+  State<Task> createState() => _TaskState();
+}
+
+class _TaskState extends State<Task> {
+  int nivel = 0;
+
+  @override
   Widget build(BuildContext context) {
-    int nivel = 5;
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -69,14 +76,16 @@ class Task extends StatelessWidget {
                       Container(
                         width: 200,
                         child: Text(
-                          nome,
+                          widget.nome,
                           style: TextStyle(
                               fontSize: 24, overflow: TextOverflow.ellipsis),
                         ),
                       ),
                       ElevatedButton(
                           onPressed: () {
-                            nivel++;
+                            setState(() {
+                              nivel++;
+                            });
                             print(nivel);
                           },
                           child: Icon(Icons.arrow_drop_up))
