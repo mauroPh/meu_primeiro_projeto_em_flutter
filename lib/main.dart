@@ -12,16 +12,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: ThemeData(primarySwatch: Colors.indigo),
       home: Scaffold(
         appBar: AppBar(
           title: Text('Tarefas'),
         ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        body: ListView(
           children: [
+            Task('Aprender Flutter'),
+            Task('Estudar SQL'),
+            Task('Estudar C#'),
+            Task('Caminhar'),
+            Task('Treinar Inglês(conversação)'),
             Task('Aprender Flutter'),
             Task('Estudar SQL'),
             Task('Estudar C#'),
@@ -34,36 +36,62 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
 class Task extends StatelessWidget {
-  final String nome ;
-  const Task(this.nome,{Key? key}) : super(key: key);
+  final String nome;
+  const Task(this.nome, {Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return  Container(
+    int nivel = 5;
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Container(
         child: Stack(
           children: [
             Container(
               color: Colors.blue,
               height: 140,
             ),
-            Container(
-                color: Colors.white,
-                height: 100,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Container(
-                      color: Colors.black26,
-                      width: 72,
-                      height: 100,
-                    ),
-                    Text(nome),
-                    ElevatedButton(
-                        onPressed: () {}, child: Icon(Icons.arrow_drop_up))
-                  ],
-                )),
+            Column(
+              children: [
+                Container(
+                  color: Colors.white,
+                  height: 100,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        color: Colors.black26,
+                        width: 72,
+                        height: 100,
+                      ),
+                      Container(
+                        width: 200,
+                        child: Text(
+                          nome,
+                          style: TextStyle(
+                              fontSize: 24, overflow: TextOverflow.ellipsis),
+                        ),
+                      ),
+                      ElevatedButton(
+                          onPressed: () {
+                            nivel++;
+                            print(nivel);
+                          },
+                          child: Icon(Icons.arrow_drop_up))
+                    ],
+                  ),
+                ),
+                Text(
+                  'Nivel:$nivel',
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                ),
+              ],
+            ),
           ],
-        ));
+        ),
+      ),
+    );
   }
 }
