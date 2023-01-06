@@ -20,16 +20,42 @@ class MyApp extends StatelessWidget {
         ),
         body: ListView(
           children: [
-            Task('Aprender Flutter'),
-            Task('Estudar SQL'),
-            Task('Estudar C#'),
-            Task('Caminhar'),
-            Task('Treinar Inglês(conversação)'),
-            Task('Aprender Flutter'),
-            Task('Estudar SQL'),
-            Task('Estudar C#'),
-            Task('Caminhar'),
-            Task('Treinar Inglês(conversação)'),
+            Task(
+              'Aprender Flutter',
+              'https://pbs.twimg.com/media/Eu7m692XIAEvxxP?format=png&name=large',
+            ),
+            Task(
+              'Estudar SQL',
+              'https://cdn.pixabay.com/photo/2017/07/31/11/46/laptop-2557586_960_720.jpg',
+            ),
+            Task(
+              'Estudar C#',
+              'https://cdn.pixabay.com/photo/2017/07/31/14/45/code-2558220_960_720.jpg',
+            ),
+            Task(
+              'Caminhar',
+              'https://cdn.pixabay.com/photo/2020/01/21/11/39/running-4782722_960_720.jpg',
+            ),
+            Task(
+              'Treinar Inglês(conversação)',
+              'https://cdn.pixabay.com/photo/2019/05/20/13/15/webinar-4216601_960_720.jpg',
+            ),
+            Task(
+              'Treinar Inglês(conversação)',
+              'https://cdn.pixabay.com/photo/2019/05/20/13/15/webinar-4216601_960_720.jpg',
+            ),
+            Task(
+              'Treinar Inglês(conversação)',
+              'https://cdn.pixabay.com/photo/2019/05/20/13/15/webinar-4216601_960_720.jpg',
+            ),
+            Task(
+              'Treinar Inglês(conversação)',
+              'https://cdn.pixabay.com/photo/2019/05/20/13/15/webinar-4216601_960_720.jpg',
+            ),
+            Task(
+              'Treinar Inglês(conversação)',
+              'https://cdn.pixabay.com/photo/2019/05/20/13/15/webinar-4216601_960_720.jpg',
+            ),
           ],
         ),
         floatingActionButton: FloatingActionButton(onPressed: () {}),
@@ -39,9 +65,10 @@ class MyApp extends StatelessWidget {
 }
 
 class Task extends StatefulWidget {
-  final String nome;
+  final String name;
+  final String picture;
 
-  const Task(this.nome, {Key? key}) : super(key: key);
+  const Task(this.name, this.picture, {Key? key}) : super(key: key);
 
   @override
   State<Task> createState() => _TaskState();
@@ -71,15 +98,19 @@ class _TaskState extends State<Task> {
                     children: [
                       Container(
                         color: Colors.black26,
-                        width: 72,
-                        height: 100,
+                        width: 210,
+                        height: 150,
+                        child: Image.network(
+                          widget.picture,
+                          fit: BoxFit.cover,
+                        ),
                       ),
                       Container(
                         width: 200,
                         child: Text(
-                          widget.nome,
+                          widget.name,
                           style: TextStyle(
-                              fontSize: 24, overflow: TextOverflow.ellipsis),
+                              fontSize: 16, overflow: TextOverflow.ellipsis),
                         ),
                       ),
                       Container(
